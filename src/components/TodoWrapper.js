@@ -14,7 +14,12 @@ const TodoWrapper = () => {
     }
 
     const toggleComplete = id =>{
-      setTodos(todos.map(todo => todo.id == id ? {...todo, completed: !todo.completed} : todo))
+      setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo))
+    }
+
+    // filter all of the todos that are not equal to the id (basically deleting the selected todo)
+    const deleteTodo = id => {
+      setTodos(todos.filter(todo => todo.id !== id))
     }
 
   return (
@@ -22,7 +27,8 @@ const TodoWrapper = () => {
       <TodoForm addTodo={addTodos}/>
       {todos.map((todo, index)=>(
         <Todo task={todo} key={index}
-        toggleComplete={toggleComplete}/>
+        toggleComplete={toggleComplete}
+        deleteTodo={deleteTodo}/>
       ))}
     </div>
   )
